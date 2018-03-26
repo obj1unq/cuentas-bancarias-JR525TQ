@@ -1,0 +1,43 @@
+import cuentas.*
+
+test "Casa derrochona"{
+	casa.asignarCuenta(cuentaJulian)
+	cuentaJulian.depositar(1000000)
+	casa.compra(2500)
+	casa.compra(6000)
+	assert.that(casa.esDerrochona())	
+}
+
+test "Casa no derrochona"{
+	casa.asignarCuenta(cuentaJulian)
+	cuentaJulian.depositar(1000000)
+	casa.compra(1500)
+	assert.that(!casa.esDerrochona())
+}
+
+test "Casa bacan"{
+	cuentaPepe.depositar(50000)
+	casa.asignarCuenta(cuentaPepe)
+	assert.that(casa.esBacan())
+	
+}
+
+test "Casa no bacan"{
+	cuentaPepe.depositar(30000)
+	casa.asignarCuenta(cuentaPepe)
+	assert.that(!casa.esBacan())
+}
+	
+	
+test "Depositos en cuenta combinada"{
+	cuentaCombinada.asignarCuentaPrimaria(cuentaJulian)
+	cuentaCombinada.asignarCuentaSecundaria(cuentaPepe)
+	
+	cuentaCombinada.depositar(4000)
+	cuentaCombinada.depositar(4000)
+	cuentaCombinada.depositar(4000)
+	
+	assert.equals(10400, cuentaCombinada.saldo())
+	
+	
+}
